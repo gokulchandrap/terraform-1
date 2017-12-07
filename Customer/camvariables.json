@@ -10,7 +10,6 @@
         "type": "string"
     }, 
     {
-    {
         "description": "Softlayer API Key", 
         "hidden": false, 
         "immutable": false, 
@@ -20,7 +19,6 @@
         "secured": false, 
         "type": "string"
     }, 
-    {
     {
         "default": "AAK",
         "description": "Prepend hostnames with this", 
