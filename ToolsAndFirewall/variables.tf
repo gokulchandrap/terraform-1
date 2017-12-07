@@ -61,7 +61,7 @@ variable "tags" {
    default     = ["ctsp"]
 }
 
-variable "FWimage_id" {
+variable "fw_image_id" {
   description = "Firewall image ID: SASTeam_SasFW_Redhat_7.4_Image_V4"
   default     = "1764243"
 }
