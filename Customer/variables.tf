@@ -1,10 +1,10 @@
-variable "username" {
-   description = "Softlayer user name"
-}
-
-variable "api_key" {
-   description = "Softlayer API Key"
-}
+#variable "username" {
+#   description = "Softlayer user name"
+#}
+#
+#variable "api_key" {
+#   description = "Softlayer API Key"
+#}
 
 variable "prefix" {
    description = "Prepend hostnames with this"
@@ -33,7 +33,7 @@ variable "hourly_billing" {
 
 variable "local_disk" {
   description = "boolean"
-  default     = true
+  default     = false
 }
 
 variable "memory" {
