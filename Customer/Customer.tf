@@ -1,3 +1,8 @@
+provider "softlayer" {
+  username = "${var.username}"
+  api_key  = "${var.api_key}"
+}
+
 #CTSP Sasg
 resource "softlayer_virtual_guest" "ctsp_sasg1" {
   hostname             = "${var.prefix}ctspSasgOne"

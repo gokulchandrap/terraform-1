@@ -1,5 +1,27 @@
 [
     {
+        "description": "Softlayer user name", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Softlayer User Name", 
+        "name": "username", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    }, 
+    {
+    {
+        "description": "Softlayer API Key", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Softlayer API Key", 
+        "name": "api_key", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    }, 
+    {
+    {
         "default": "AAK",
         "description": "Prepend hostnames with this", 
         "hidden": false, 
