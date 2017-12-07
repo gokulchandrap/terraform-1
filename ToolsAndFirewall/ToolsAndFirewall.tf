@@ -6,9 +6,12 @@ provider "ibm" {
 }
 
 # This will create a new SSH key that will show up under the Devices>Manage>SSH Keys in the SoftLayer console.
-resource "softlayer_ssh_key" "amazon_key_1" {
-  label = "${var.prefix}_ctspkey"
-  public_key = "${file("${var.public_key_path}")}"
+#resource "softlayer_ssh_key" "public_key" {
+#  label = "${var.prefix}_ctspkey"
+#  public_key = "${file("${var.public_key_path}")}"
+#}
+data "softlayer_ssh_key" "public_key" {
+    label = "ctspkey"
 }
 
 #EE
@@ -18,7 +21,7 @@ resource "ibm_compute_vm_instance" "MSctspEE" {
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
   private_subnet       = "${var.private_subnet}"
-  ssh_key_ids          = ["${softlayer_ssh_key.amazon_key_1.id}"]
+  ssh_key_ids          = ["${softlayer_ssh_key.public_key.id}"]
   domain               = "${var.domain}"
   image_id             = "${var.tools_image_id}"
   network_speed        = "${var.network_speed}"
@@ -35,7 +38,7 @@ resource "ibm_compute_vm_instance" "MSctspCHEF" {
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
   private_subnet       = "${var.private_subnet}"
-  ssh_key_ids          = ["${softlayer_ssh_key.amazon_key_1.id}"]
+  ssh_key_ids          = ["${softlayer_ssh_key.public_key.id}"]
   domain               = "${var.domain}"
   image_id             = "${var.tools_image_id}"
   network_speed        = "${var.network_speed}"
@@ -53,7 +56,7 @@ resource "ibm_compute_vm_instance" "MSctspBPM" {
   private_network_only = true
   image_id             = "${var.tools_image_id}"
   private_subnet       = "${var.private_subnet}"
-  ssh_key_ids          = ["${softlayer_ssh_key.amazon_key_1.id}"]
+  ssh_key_ids          = ["${softlayer_ssh_key.public_key.id}"]
   domain               = "${var.domain}"
   network_speed        = "${var.network_speed}"
   cores                = "${var.cores}"
@@ -67,7 +70,7 @@ resource "ibm_compute_vm_instance" "MSctspFW" {
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
   private_subnet       = "${var.private_subnet}"
-  ssh_key_ids          = ["${softlayer_ssh_key.amazon_key_1.id}"]
+  ssh_key_ids          = ["${softlayer_ssh_key.public_key.id}"]
   image_id             = "${var.fw_image_id}"
   cores                = "${var.cores}"
   memory               = "${var.memory}"

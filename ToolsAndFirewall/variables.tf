@@ -81,10 +81,10 @@ variable "private_key_path" {
   default     = "/home/terraform/amazontestkey.pem"
 }
 
-variable "public_key_path" {
-  description = "Enter the path to your public key \n For instance mine is: /Users/matthewxstaffelbach/.ssh/amazontestkey.pub"
-  default     = "/home/terraform/amazontestkey.pub"
-}
+#variable "public_key_path" {
+#  description = "Enter the path to your public key \n For instance mine is: /Users/matthewxstaffelbach/.ssh/amazontestkey.pub"
+#  default     = "/home/terraform/amazontestkey.pub"
+#}
 
 variable "hourly_billing" {
   description = "boolean"
