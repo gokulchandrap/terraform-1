@@ -21,7 +21,7 @@ resource "ibm_compute_vm_instance" "MSctspEE" {
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
   private_subnet       = "${var.private_subnet}"
-  ssh_key_ids          = ["${softlayer_ssh_key.public_key.id}"]
+  ssh_key_ids          = ["${data.softlayer_ssh_key.public_key.id}"]
   domain               = "${var.domain}"
   image_id             = "${var.tools_image_id}"
   network_speed        = "${var.network_speed}"
@@ -38,7 +38,7 @@ resource "ibm_compute_vm_instance" "MSctspCHEF" {
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
   private_subnet       = "${var.private_subnet}"
-  ssh_key_ids          = ["${softlayer_ssh_key.public_key.id}"]
+  ssh_key_ids          = ["${data.softlayer_ssh_key.public_key.id}"]
   domain               = "${var.domain}"
   image_id             = "${var.tools_image_id}"
   network_speed        = "${var.network_speed}"
@@ -56,7 +56,7 @@ resource "ibm_compute_vm_instance" "MSctspBPM" {
   private_network_only = true
   image_id             = "${var.tools_image_id}"
   private_subnet       = "${var.private_subnet}"
-  ssh_key_ids          = ["${softlayer_ssh_key.public_key.id}"]
+  ssh_key_ids          = ["${data.softlayer_ssh_key.public_key.id}"]
   domain               = "${var.domain}"
   network_speed        = "${var.network_speed}"
   cores                = "${var.cores}"
@@ -70,7 +70,7 @@ resource "ibm_compute_vm_instance" "MSctspFW" {
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
   private_subnet       = "${var.private_subnet}"
-  ssh_key_ids          = ["${softlayer_ssh_key.public_key.id}"]
+  ssh_key_ids          = ["${data.softlayer_ssh_key.public_key.id}"]
   image_id             = "${var.fw_image_id}"
   cores                = "${var.cores}"
   memory               = "${var.memory}"
