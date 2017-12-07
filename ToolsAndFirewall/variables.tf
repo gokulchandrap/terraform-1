@@ -1,3 +1,11 @@
+variable "username" {
+   description = "Softlayer user name"
+}
+
+variable "api_key" {
+   description = "Softlayer API Key"
+}
+
 variable "prefix" {
    description = "Hostname prefix"
    default     = "AAK"

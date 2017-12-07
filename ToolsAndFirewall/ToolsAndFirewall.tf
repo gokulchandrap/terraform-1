@@ -1,5 +1,9 @@
-# This will create a new SSH key that will show up under the \
-# Devices>Manage>SSH Keys in the SoftLayer console.
+provider "softlayer" {
+  username = "${var.username}"
+  api_key  = "${var.api_key}"
+}
+
+# This will create a new SSH key that will show up under the Devices>Manage>SSH Keys in the SoftLayer console.
 resource "softlayer_ssh_key" "amazon_key_1" {
   label = "${var.prefix}_ctspkey"
   public_key = "${file("${var.public_key_path}")}"
@@ -115,7 +119,7 @@ resource "softlayer_virtual_guest" "MSctspFW" {
   tags                 = "${var.tags}"
   private_subnet       = "${var.private_subnet}"
   ssh_key_ids          = ["${softlayer_ssh_key.amazon_key_1.id}"]
-  image_id             = "${var.FWimage_id}"
+  image_id             = "${var.fw_image_id}"
   cores                = "${var.cores}"
   memory               = "${var.memory}"
   domain               = "${var.domain}"

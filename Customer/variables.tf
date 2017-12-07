@@ -1,13 +1,16 @@
 variable "username" {
    description = "Softlayer user name"
 }
+
 variable "api_key" {
    description = "Softlayer API Key"
 }
+
 variable "prefix" {
    description = "Prepend hostnames with this"
    default     = "AAK"
 }
+
 variable "datacenter" {
    description = "This is the datacenter, Ours is Dallas 13"
    default     = "dal13"

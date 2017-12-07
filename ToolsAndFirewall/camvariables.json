@@ -1,0 +1,365 @@
+[
+    {
+        "description": "Path to your private key", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Private key path", 
+        "name": "private_key_path", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "description": "Path to your public key", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Public key path", 
+        "name": "public_key_path", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "description": "Softlayer user name", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Softlayer User Name", 
+        "name": "username", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    }, 
+    {
+        "description": "Softlayer API Key", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Softlayer API Key", 
+        "name": "api_key", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    }, 
+    {
+        "default": "AAK",
+        "description": "Prepend hostnames with this", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Prefix", 
+        "name": "prefix", 
+        "required": true, 
+        "secured": false, 
+        "type": "string",
+	    "regex": "^(?!(.*(--)))([A-Za-z0-9]{1,2}|[A-Za-z0-9][A-Za-z0-9-]{1,198}[A-Za-z0-9])$"
+    }, 
+    {
+        "description": "Softlayer datacenter where infrastructure resources will be deployed", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "SoftLayer Data Center", 
+        "name": "datacenter", 
+        "required": true, 
+        "secured": false, 
+        "type": "string",
+        "options": [
+          {
+              "value": "ams01",
+              "label": "Amsterdam 01, The Netherlands"
+          },
+          {
+              "value": "ams03",
+              "label": "Amsterdam 03, The Netherlands"
+          },
+          {
+              "value": "che01",
+              "label": "Chennai, India"
+          },
+          {
+              "value": "dal01",
+              "label": "Dallas 01, USA"
+          },
+          {
+              "value": "dal02",
+              "label": "Dallas 02, USA"
+          },
+          {
+              "value": "dal05",
+              "label": "Dallas 05, USA"
+          },
+          {
+              "value": "dal06",
+              "label": "Dallas 06, USA"
+          },
+          {
+              "value": "dal07",
+              "label": "Dallas 07, USA"
+          },
+          {
+              "value": "dal09",
+              "label": "Dallas 09, USA"
+          },
+          {
+              "value": "dal10",
+              "label": "Dallas 10, USA"
+          },
+          {
+              "value": "dal13",
+              "label": "Dallas 13, USA"
+          },
+          {
+              "value": "fra02",
+              "label": "Frankfurt, Germany"
+          },
+          {
+              "value": "hkg02",
+              "label": "Hong Kong, China"
+          },
+          {
+              "value": "hou02",
+              "label": "Houston, USA"
+          },
+          {
+              "value": "lon02",
+              "label": "London, England"
+          },
+          {
+              "value": "mel01",
+              "label": "Melbourne, Australia"
+          },
+          {
+              "value": "mil01",
+              "label": "Milan, Italy"
+          },
+          {
+              "value": "mon01",
+              "label": "Montreal, Canada"
+          },
+          {
+              "value": "osl01",
+              "label": "Oslo, Norway"
+          },
+          {
+              "value": "par01",
+              "label": "Paris, France"
+          },
+          {
+              "value": "mex01",
+              "label": "Querétaro, Mexico"
+          },
+          {
+              "value": "sjc01",
+              "label": "San Jose 01, USA"
+          },
+          {
+              "value": "sjc03",
+              "label": "San Jose 03, USA"
+          },
+          {
+              "value": "sao01",
+              "label": "Sao Paulo, Brazil"
+          },
+          {
+              "value": "sea01",
+              "label": "Seattle, USA"
+          },
+          {
+              "value": "seo01",
+              "label": "Seoul 01, Korea"
+          },
+          {
+              "value": "sng01",
+              "label": "Singapore, Singapore"
+          },
+          {
+              "value": "syd01",
+              "label": "Sydney, Australia"
+          },
+          {
+              "value": "tok02",
+              "label": "Tokyo, Japan"
+          },
+          {
+              "value": "tor01",
+              "label": "Toronto, Canada"
+          },
+          {
+              "value": "wdc01",
+              "label": "Washington, D.C. 01, USA"
+          },
+          {
+              "value": "wdc04",
+              "label": "Washington, D.C. 04, USA"
+          },
+          {
+              "value": "wdc07",
+              "label": "Washington, D.C. 07, USA",
+              "default": "true"
+          }
+        ]
+    },
+    {
+        "default": ["ctsp"],
+        "description": "Tags", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Tags", 
+        "name": "tags", 
+        "required": true, 
+        "secured": false, 
+        "type": "list"
+    }, 
+    {
+        "default": "ibm.com",
+        "description": "Domain", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Domain", 
+        "name": "domain", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    }, 
+    {
+        "default": "true",
+        "description": "Hourly Billing", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Hourly Billing", 
+        "name": "hourly_billing", 
+        "required": true, 
+        "secured": false, 
+        "type": "boolean"
+    }, 
+    {
+        "default": "true",
+        "description": "Local Disk", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Local Disk", 
+        "name": "local_disk", 
+        "required": true, 
+        "secured": false, 
+        "type": "boolean"
+    }, 
+    {
+        "default": ["100","100"],
+        "description": "Disks - 2 required for the images", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Disks", 
+        "name": "disks", 
+        "required": true, 
+        "secured": false, 
+        "type": "list"
+    }, 
+    {
+        "default": "1024",
+        "description": "Memory", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Prefix", 
+        "name": "prefix", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "1",
+        "description": "Cores", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Cores", 
+        "name": "cores", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "1000",
+        "description": "Network Speed", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Network Speed", 
+        "name": "network_speed", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "ctspBPM",
+        "description": "BPM Hostname", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "BPM Hostname", 
+        "name": "bpm_hostname", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "ctspCHEF",
+        "description": "CHEF Hostname", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "CHEF Hostname", 
+        "name": "chef_hostname", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "ctspEE",
+        "description": "EE Hostname", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "EE Hostname", 
+        "name": "ee_hostname", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "ctspFW",
+        "description": "FW Hostname", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "FW Hostname", 
+        "name": "fw_hostname", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "10.190.87.128/26",
+        "description": "Private Subnet, all Tools and FW VMs should be created on this subnet", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Private Subnet", 
+        "name": "private_subnet", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "1764243",
+        "description": "Firewall Image Id", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Firewall Image Id", 
+        "name": "fw_image_id", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "1775961",
+        "description": "Tools Image Id", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Tools Image Id", 
+        "name": "tools_image_id", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    }
+]
+
