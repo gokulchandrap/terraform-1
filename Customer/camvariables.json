@@ -175,7 +175,7 @@
         "type": "string"
     }, 
     {
-        "default": true,
+        "default": "true",
         "description": "Hourly Billing", 
         "hidden": false, 
         "immutable": false, 
@@ -186,7 +186,7 @@
         "type": "boolean"
     }, 
     {
-        "default": true,
+        "default": "true",
         "description": "Local Disk", 
         "hidden": false, 
         "immutable": false, 
@@ -197,7 +197,7 @@
         "type": "boolean"
     }, 
     {
-        "default": 1024,
+        "default": "1024",
         "description": "Memory", 
         "hidden": false, 
         "immutable": false, 
@@ -205,7 +205,29 @@
         "name": "prefix", 
         "required": true, 
         "secured": false, 
-        "type": "integer"
+        "type": "string"
+    },
+    {
+        "default": "1",
+        "description": "Cores", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Cores", 
+        "name": "cores", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "1000",
+        "description": "Network Speed", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Network Speed", 
+        "name": "network_speed", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
     },
     {
         "default": "REDHAT_7_64",
