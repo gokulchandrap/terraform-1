@@ -256,8 +256,8 @@
         "description": "Memory", 
         "hidden": false, 
         "immutable": false, 
-        "label": "Prefix", 
-        "name": "prefix", 
+        "label": "Memory", 
+        "name": "memory", 
         "required": true, 
         "secured": false, 
         "type": "string"
