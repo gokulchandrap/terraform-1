@@ -1,7 +1,7 @@
 [
     {
         "description": "Path to your private key", 
-        "hidden": false, 
+        "hidden": true, 
         "immutable": false, 
         "label": "Private key path", 
         "name": "private_key_path", 
@@ -9,36 +9,6 @@
         "secured": false, 
         "type": "string"
     },
-    {
-        "description": "Path to your public key", 
-        "hidden": false, 
-        "immutable": false, 
-        "label": "Public key path", 
-        "name": "public_key_path", 
-        "required": true, 
-        "secured": false, 
-        "type": "string"
-    },
-    {
-        "description": "Softlayer user name", 
-        "hidden": false, 
-        "immutable": false, 
-        "label": "Softlayer User Name", 
-        "name": "username", 
-        "required": true, 
-        "secured": false, 
-        "type": "string"
-    }, 
-    {
-        "description": "Softlayer API Key", 
-        "hidden": false, 
-        "immutable": false, 
-        "label": "Softlayer API Key", 
-        "name": "api_key", 
-        "required": true, 
-        "secured": false, 
-        "type": "string"
-    }, 
     {
         "default": "AAK",
         "description": "Prepend hostnames with this", 
@@ -232,7 +202,7 @@
     {
         "default": "true",
         "description": "Local Disk", 
-        "hidden": false, 
+        "hidden": true, 
         "immutable": false, 
         "label": "Local Disk", 
         "name": "local_disk", 

@@ -1,6 +1,8 @@
-provider "softlayer" {
-  username = "${var.username}"
-  api_key  = "${var.api_key}"
+#provider "softlayer" {
+#  username = "${var.username}"
+#  api_key  = "${var.api_key}"
+#}
+provider "ibm" {
 }
 
 # This will create a new SSH key that will show up under the Devices>Manage>SSH Keys in the SoftLayer console.
@@ -10,7 +12,7 @@ resource "softlayer_ssh_key" "amazon_key_1" {
 }
 
 #EE
-resource "softlayer_virtual_guest" "MSctspEE" {
+resource "ibm_compute_vm_instance" "MSctspEE" {
   hostname             = "${var.prefix}${var.ee_hostname}"
   private_network_only = true
   datacenter           = "${var.datacenter}"
@@ -27,7 +29,7 @@ resource "softlayer_virtual_guest" "MSctspEE" {
 }
 
 #CHEF
-resource "softlayer_virtual_guest" "MSctspCHEF" {
+resource "ibm_compute_vm_instance" "MSctspCHEF" {
   hostname             = "${var.prefix}${var.chef_hostname}"
   private_network_only = true
   datacenter           = "${var.datacenter}"
@@ -44,7 +46,7 @@ resource "softlayer_virtual_guest" "MSctspCHEF" {
 }
 
 #BPM
-resource "softlayer_virtual_guest" "MSctspBPM" {
+resource "ibm_compute_vm_instance" "MSctspBPM" {
   hostname             = "${var.prefix}${var.bpm_hostname}"
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
@@ -60,7 +62,7 @@ resource "softlayer_virtual_guest" "MSctspBPM" {
 }
 
 #FIREWALL
-resource "softlayer_virtual_guest" "MSctspFW" {
+resource "ibm_compute_vm_instance" "MSctspFW" {
   hostname             = "${var.prefix}${var.fw_hostname}"
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
@@ -80,7 +82,7 @@ resource "null_resource" "bpm_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${softlayer_virtual_guest.MSctspBPM.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.MSctspBPM.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -123,7 +125,7 @@ resource "null_resource" "chef_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${softlayer_virtual_guest.MSctspCHEF.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.MSctspCHEF.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -166,7 +168,7 @@ resource "null_resource" "ee_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${softlayer_virtual_guest.MSctspEE.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.MSctspEE.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -209,7 +211,7 @@ resource "null_resource" "fw_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 2222
-    host    = "${softlayer_virtual_guest.MSctspFW.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.MSctspFW.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "remote-exec" {

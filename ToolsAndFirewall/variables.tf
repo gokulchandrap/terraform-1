@@ -1,10 +1,10 @@
-variable "username" {
-   description = "Softlayer user name"
-}
-
-variable "api_key" {
-   description = "Softlayer API Key"
-}
+#variable "username" {
+#   description = "Softlayer user name"
+#}
+#
+#variable "api_key" {
+#   description = "Softlayer API Key"
+#}
 
 variable "prefix" {
    description = "Hostname prefix"
@@ -77,11 +77,13 @@ variable "domain" {
 }
 
 variable "private_key_path" {
-  description = "Enter the path to your public key \n For instance mine is: /Users/matthewxstaffelbach/amazontestkey.pem"
+  description = "Enter the path to your public key"
+  default     = "/home/terraform/amazontestkey.pem"
 }
 
 variable "public_key_path" {
   description = "Enter the path to your public key \n For instance mine is: /Users/matthewxstaffelbach/.ssh/amazontestkey.pub"
+  default     = "/home/terraform/amazontestkey.pub"
 }
 
 variable "hourly_billing" {
