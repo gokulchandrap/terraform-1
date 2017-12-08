@@ -22,6 +22,17 @@
         "type": "string"
     },
     {
+        "default": "255.255.255.192",
+        "description": "Tools Subnet", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Tools Subnet", 
+        "name": "tools_subnet", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
         "default": "10.190.87.129",
         "description": "Current default GW of the tools server before pointing to vyos", 
         "hidden": false, 

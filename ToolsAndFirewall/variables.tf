@@ -21,6 +21,11 @@ variable "customer_subnet" {
    default     = "255.255.255.248"
 }
 
+variable "tools_subnet" {
+   description = "Tools Subnet"
+   default     = "255.255.255.192"
+}
+
 variable "bcr_ip" {
    description = "Current default GW of the tools server before pointing to vyos"
    default     = "10.190.87.129"
