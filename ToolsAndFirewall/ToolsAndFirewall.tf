@@ -232,10 +232,10 @@ resource "null_resource" "makeVarsFile" {
   sed "s/^BPM_IP=.*/BPM_IP=${softlayer_virtual_guest.MSctspBPM.ipv4_address_private}/" | \
   sed "s/^EE_IP=.*/EE_IP=${softlayer_virtual_guest.MSctspEE.ipv4_address_private}/" | \
   sed "s/^CHEF_IP=.*/CHEF_IP=${softlayer_virtual_guest.MSctspCHEF.ipv4_address_private}/" | \
-  sed "s/^TOOLS_SUBNET=.*/TOOLS_SUBNET=${cidrnetmask(var.tools_subnet)}/" | \
+  sed "s/^TOOLS_SUBNET=.*/TOOLS_SUBNET=${cidrnetmask(var.tools_subnet}/" | \
   sed "s/^BCR_IP=.*/BCR_IP=${var.bcr_ip}/" | \
   sed "s/^SASGAAS_MS_IP=.*/SASGAAS_MS_IP=${var.sasgaas_ms_ip}/" | \
-  sed "s/^CUSTOMER_SUBNETS\[0\]=.*/CUSTOMER_SUBNETS\[0\]=${var.customer_subnet)}/" | /
+  sed "s/^CUSTOMER_SUBNETS\[0\]=.*/CUSTOMER_SUBNETS\[0\]=${var.customer_subnet}/" | /
   sed "s/^SASG_MASQ_IP\[0\]=.*/SASG_MASQ_IP[0]=${var.sasg_masq_ip}/" | /
   sed "s/^VTUN_PORT\[0\]=.*/VTUN_PORT[0]=${var.vtun_port}/" | /
   sed "s/^SASG_IP_1\[0\]=.*/SASG_IP_1[0]=${var.sasg_ip_1}/" | /
