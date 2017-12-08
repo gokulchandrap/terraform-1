@@ -225,17 +225,7 @@ resource "null_resource" "fw_remote_exec" {
   }
 }
 
-resource "null_resource" "sasg_remote_exec" {
-  provisioner "local-exec" {
-    inline = [
-    "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCexyYRvubWy3VxaPF+7KDnmD/knav1/ftaWQmJc4zrpaYFfhAd1lvPKGe/GEHJ0N36CRHBiT6GK4c6PjNdiqNS+yXdlA61hZyvq0KOc7iDO/JlsRJ02H7kds6Yh6t/IT+WojESFGibCFhpaQrgvDxkLv7bt4/qAzJjmz9obOqEP37eU56uCoTuSK9fxhOhmpj5aKbqDzgyamq5MiXXx+HjOTPmWFuZY88si8Y/pDegQ34bJsDAGHAJ3yuEmCnREt1WqfKCOSgnPQPHe3Q5TdlHOJ545AytyHnIO0VdDwkpHrzPSmQ6oJSCk979OakRehr06WQSsw99Yj/hWCUJxt9j ameyatayade@ameyas-mbp.watson.ibm.com' >> /root/.ssh/authorized_keys",
-    "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCexyYRvubWy3VxaPF+7KDnmD/knav1/ftaWQmJc4zrpaYFfhAd1lvPKGe/GEHJ0N36CRHBiT6GK4c6PjNdiqNS+yXdlA61hZyvq0KOc7iDO/JlsRJ02H7kds6Yh6t/IT+WojESFGibCFhpaQrgvDxkLv7bt4/qAzJjmz9obOqEP37eU56uCoTuSK9fxhOhmpj5aKbqDzgyamq5MiXXx+HjOTPmWFuZY88si8Y/pDegQ34bJsDAGHAJ3yuEmCnREt1WqfKCOSgnPQPHe3Q5TdlHOJ545AytyHnIO0VdDwkpHrzPSmQ6oJSCk979OakRehr06WQSsw99Yj/hWCUJxt9j ameyatayade@ameyas-mbp.watson.ibm.com' >> /home/sasauto/.ssh/authorized_keys"
-    ]
-  }
-}
-
 resource "null_resource" "makeVarsFile" {
-  depends_on = ["softlayer_virtual_guest.MSctspCustomer"]
   provisioner "local-exec" {
     command = <<EOT
   cat vars_empty.template | \
