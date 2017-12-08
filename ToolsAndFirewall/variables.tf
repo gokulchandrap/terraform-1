@@ -11,14 +11,47 @@ variable "prefix" {
    default     = "AAK"
 }
 
+variable "vtun_port" {
+   description = "VTUN_PORT"
+   default     = "443"
+}
+
+variable "customer_subnet" {
+   description = "Customer Subnet"
+   default     = "255.255.255.248"
+}
+
+variable "bcr_ip" {
+   description = "Current default GW of the tools server before pointing to vyos"
+   default     = "10.190.87.129"
+}
+
+variable "sasgaas_ms_ip" {
+   description = "Private IP Address of the VM running Sasg Automation Web App"
+   default     = "10.190.87.161"
+}
+
+variable "sasg_masq_ip" {
+   description = "Public IP Address of the Master SASG VM"
+}
+
 variable "sasg_ip_1" {
    description = "Private sasg customer ip address"
-   default     = "10.186.149.141"
 }
 
 variable "sasg_vip_1" {
    description = "Softlayer Portable IP"
    default     = "10.186.95.5"
+}
+
+variable "dns_ip" {
+   description = "DNS"
+   default     = "8.8.8.8"
+}
+
+variable "ldap_ip" {
+   description = "Ldap ip address"
+   default     = "10.153.81.2"
 }
 
 variable "bpm_hostname" {

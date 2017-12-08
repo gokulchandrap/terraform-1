@@ -225,3 +225,35 @@ resource "null_resource" "fw_remote_exec" {
   }
 }
 
+resource "null_resource" "sasg_remote_exec" {
+  provisioner "local-exec" {
+    inline = [
+    "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCexyYRvubWy3VxaPF+7KDnmD/knav1/ftaWQmJc4zrpaYFfhAd1lvPKGe/GEHJ0N36CRHBiT6GK4c6PjNdiqNS+yXdlA61hZyvq0KOc7iDO/JlsRJ02H7kds6Yh6t/IT+WojESFGibCFhpaQrgvDxkLv7bt4/qAzJjmz9obOqEP37eU56uCoTuSK9fxhOhmpj5aKbqDzgyamq5MiXXx+HjOTPmWFuZY88si8Y/pDegQ34bJsDAGHAJ3yuEmCnREt1WqfKCOSgnPQPHe3Q5TdlHOJ545AytyHnIO0VdDwkpHrzPSmQ6oJSCk979OakRehr06WQSsw99Yj/hWCUJxt9j ameyatayade@ameyas-mbp.watson.ibm.com' >> /root/.ssh/authorized_keys",
+    "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCexyYRvubWy3VxaPF+7KDnmD/knav1/ftaWQmJc4zrpaYFfhAd1lvPKGe/GEHJ0N36CRHBiT6GK4c6PjNdiqNS+yXdlA61hZyvq0KOc7iDO/JlsRJ02H7kds6Yh6t/IT+WojESFGibCFhpaQrgvDxkLv7bt4/qAzJjmz9obOqEP37eU56uCoTuSK9fxhOhmpj5aKbqDzgyamq5MiXXx+HjOTPmWFuZY88si8Y/pDegQ34bJsDAGHAJ3yuEmCnREt1WqfKCOSgnPQPHe3Q5TdlHOJ545AytyHnIO0VdDwkpHrzPSmQ6oJSCk979OakRehr06WQSsw99Yj/hWCUJxt9j ameyatayade@ameyas-mbp.watson.ibm.com' >> /home/sasauto/.ssh/authorized_keys"
+    ]
+  }
+}
+
+resource "null_resource" "makeVarsFile" {
+  depends_on = ["softlayer_virtual_guest.MSctspCustomer"]
+  provisioner "local-exec" {
+    command = <<EOT
+  cat vars_empty.template | \
+  sed "s/^BPM_IP=.*/BPM_IP=${softlayer_virtual_guest.MSctspBPM.ipv4_address_private}/" | \
+  sed "s/^EE_IP=.*/EE_IP=${softlayer_virtual_guest.MSctspEE.ipv4_address_private}/" | \
+  sed "s/^CHEF_IP=.*/CHEF_IP=${softlayer_virtual_guest.MSctspCHEF.ipv4_address_private}/" | \
+  sed "s/^TOOLS_SUBNET=.*/TOOLS_SUBNET=${cidrnetmask(var.tools_subnet)}/" | \
+  sed "s/^BCR_IP=.*/BCR_IP=${var.bcr_ip}/" | \
+  sed "s/^SASGAAS_MS_IP=.*/SASGAAS_MS_IP=${var.sasgaas_ms_ip}/" | \
+  sed "s/^CUSTOMER_SUBNETS\[0\]=.*/CUSTOMER_SUBNETS\[0\]=${var.customer_subnet)}/" | /
+  sed "s/^SASG_MASQ_IP\[0\]=.*/SASG_MASQ_IP[0]=${var.sasg_masq_ip}/" | /
+  sed "s/^VTUN_PORT\[0\]=.*/VTUN_PORT[0]=${var.vtun_port}/" | /
+  sed "s/^SASG_IP_1\[0\]=.*/SASG_IP_1[0]=${var.sasg_ip_1}/" | /
+  sed "s/^SASG_VIP1\[0\]=.*/SASG_VIP1[0]=${var.sasg_vip_1}/" | /
+  sed "s/^DNS_IP\[0\]=.*/DNS_IP[0]=${var.dns_ip}/" | /
+  sed "s/^LDAP_IP\[0\]=.*/LDAP_IP[0]=${var.ldap_ip}/" | /
+  sed "s/^PUBLIC_VYOS_IP=.*/PUBLIC_VYOS_IP=${softlayer_virtual_guest.MSctspFW.ipv4_address}/" | /
+  sed "s/^PRIVATE_VYOS_IP=.*/PRIVATE_VYOS_IP=${softlayer_virtual_guest.MSctspFW.ipv4_address_private}/" > /tmp/vars
+EOT
+  }
+}

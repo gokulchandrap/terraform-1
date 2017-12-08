@@ -1,5 +1,102 @@
 [
     {
+        "default": "443",
+        "description": "VTUN_PORT", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "VTUN_PORT", 
+        "name": "vtun_port", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "255.255.255.248",
+        "description": "Customer Subnet", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Customer Subnet", 
+        "name": "customer_subnet", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "10.190.87.129",
+        "description": "Current default GW of the tools server before pointing to vyos", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Current default GW of the tools server before pointing to vyos", 
+        "name": "bcr_ip", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "10.190.87.161",
+        "description": "Private IP Address of the VM running Sasg Automation Web App", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Private IP Address of the VM running Sasg Automation Web App", 
+        "name": "sasgaas_ms_ip", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "description": "Public IP Address of the Master SASG VM", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Public IP Address of the Master SASG VM", 
+        "name": "sasg_masq_ip", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "description": "Jump Host Private sasg customer ip address", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Private sasg customer ip address", 
+        "name": "sasg_ip_1", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "10.186.95.6",
+        "description": "Softlayer Portable IP", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Softlayer Portable IP", 
+        "name": "sasg_vip_1", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "8.8.8.8",
+        "description": "DNS ip address", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "DNS ip address", 
+        "name": "dns_ip", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "default": "10.153.81.2",
+        "description": "LDAP ip address", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "LDAP ip address", 
+        "name": "ldap_ip", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
         "default": "/home/terraform/amazontestkey.pem",
         "description": "Path to your private key", 
         "hidden": true, 
