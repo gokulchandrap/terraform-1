@@ -5,7 +5,7 @@ resource "ibm_subnet" "test" {
   type = "Static"
   private = true
   ip_version = 4
-  capacity = 4
+  capacity = 8
   vlan_id = 1545437
 }
 
