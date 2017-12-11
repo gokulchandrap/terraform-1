@@ -225,16 +225,12 @@ resource "null_resource" "fw_remote_exec" {
   }
 }
 
-resource "null_resource" "makeVarsFile" {
+resource "null_resource" "callSasgService" {
   provisioner "local-exec" {
     command = <<EOT
   cat vars_empty.template | sed "s/^BPM_IP=.*/BPM_IP=${ibm_compute_vm_instance.MSctspBPM.ipv4_address_private}/" | sed "s/^EE_IP=.*/EE_IP=${ibm_compute_vm_instance.MSctspEE.ipv4_address_private}/" | sed "s/^CHEF_IP=.*/CHEF_IP=${ibm_compute_vm_instance.MSctspCHEF.ipv4_address_private}/" | sed "s/^TOOLS_SUBNET=.*/TOOLS_SUBNET=${var.tools_subnet}/" | sed "s/^BCR_IP=.*/BCR_IP=${var.bcr_ip}/" | sed "s/^SASGAAS_MS_IP=.*/SASGAAS_MS_IP=${var.sasgaas_ms_ip}/" | sed "s/^CUSTOMER_SUBNETS\[0\]=.*/CUSTOMER_SUBNETS\[0\]=${var.customer_subnet}/" | sed "s/^SASG_MASQ_IP\[0\]=.*/SASG_MASQ_IP[0]=${var.sasg_masq_ip}/" | sed "s/^VTUN_PORT\[0\]=.*/VTUN_PORT[0]=${var.vtun_port}/" | sed "s/^SASG_IP_1\[0\]=.*/SASG_IP_1[0]=${var.sasg_ip_1}/" | sed "s/^SASG_VIP1\[0\]=.*/SASG_VIP1[0]=${var.sasg_vip_1}/" | sed "s/^DNS_IP\[0\]=.*/DNS_IP[0]=${var.dns_ip}/" | sed "s/^LDAP_IP\[0\]=.*/LDAP_IP[0]=${var.ldap_ip}/" | sed "s/^PUBLIC_VYOS_IP=.*/PUBLIC_VYOS_IP=${ibm_compute_vm_instance.MSctspFW.ipv4_address}/" | sed "s/^PRIVATE_VYOS_IP=.*/PRIVATE_VYOS_IP=${ibm_compute_vm_instance.MSctspFW.ipv4_address_private}/" > /tmp/vars
 EOT
-
   }
-}
-
-resource "null_resource" "makeCustomer" {
   provisioner "local-exec" {
     command = <<EOT
 customername="${var.prefix}Customer"

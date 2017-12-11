@@ -30,7 +30,7 @@ variable "vtun_port" {
 
 variable "customer_subnet" {
    description = "Customer Subnet"
-   default     = "255.255.255.248"
+   default     = "10.190.87.128/26"
 }
 
 variable "tools_subnet" {

@@ -41,7 +41,7 @@
         "type": "string"
     },
     {
-        "default": "255.255.255.248",
+        "default": "10.190.87.128/26",
         "description": "Customer Subnet", 
         "hidden": false, 
         "immutable": false, 
