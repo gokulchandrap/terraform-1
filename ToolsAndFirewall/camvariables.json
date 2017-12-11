@@ -1,5 +1,35 @@
 [
     {
+        "description": "Bluepages username", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Bluepages username", 
+        "name": "bluepages_username", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "description": "Bluepages API Key", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Bluepages API Key", 
+        "name": "bluepages_apikey", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
+        "description": "Bluepages Bluegroup", 
+        "hidden": false, 
+        "immutable": false, 
+        "label": "Bluepages Bluegroup", 
+        "name": "bluepages_bluegroup", 
+        "required": true, 
+        "secured": false, 
+        "type": "string"
+    },
+    {
         "default": "443",
         "description": "VTUN_PORT", 
         "hidden": false, 

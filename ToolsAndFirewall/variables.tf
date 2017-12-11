@@ -6,6 +6,18 @@
 #   description = "Softlayer API Key"
 #}
 
+variable "bluepages_username" {
+   description = "Bluepages username"
+}
+
+variable "bluepages_apikey" {
+   description = "Bluepages API Key"
+}
+
+variable "bluepages_bluegroup" {
+   description = "Bluepages Bluegroup"
+}
+
 variable "prefix" {
    description = "Hostname prefix"
    default     = "AAK"
