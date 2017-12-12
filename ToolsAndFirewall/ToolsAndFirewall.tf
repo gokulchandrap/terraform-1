@@ -16,7 +16,7 @@ data "softlayer_ssh_key" "public_key" {
 
 #EE
 resource "ibm_compute_vm_instance" "vm_ctsp_ee" {
-  hostname             = "${var.prefix}${var.ee_hostname}"
+  hostname             = "${var.prefix}-${var.ee_hostname}-${var.datacenter}"
   private_network_only = true
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
@@ -33,7 +33,7 @@ resource "ibm_compute_vm_instance" "vm_ctsp_ee" {
 
 #CHEF
 resource "ibm_compute_vm_instance" "vm_ctsp_chef" {
-  hostname             = "${var.prefix}${var.chef_hostname}"
+  hostname             = "${var.prefix}-${var.chef_hostname}-${var.datacenter}"
   private_network_only = true
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
@@ -50,7 +50,7 @@ resource "ibm_compute_vm_instance" "vm_ctsp_chef" {
 
 #BPM
 resource "ibm_compute_vm_instance" "vm_ctsp_bpm" {
-  hostname             = "${var.prefix}${var.bpm_hostname}"
+  hostname             = "${var.prefix}-${var.bpm_hostname}-${var.datacenter}"
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
   private_network_only = true
@@ -66,7 +66,7 @@ resource "ibm_compute_vm_instance" "vm_ctsp_bpm" {
 
 #FIREWALL
 resource "ibm_compute_vm_instance" "vm_ctsp_vyos" {
-  hostname             = "${var.prefix}${var.fw_hostname}"
+  hostname             = "${var.prefix}-${var.fw_hostname}-${var.datacenter}"
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
   private_subnet       = "${var.private_subnet}"

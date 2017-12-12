@@ -394,9 +394,9 @@
         "type": "string"
     },
     {
-        "default": "ctspBPM",
+        "default": "bpm",
         "description": "BPM Hostname", 
-        "hidden": false, 
+        "hidden": true, 
         "immutable": false, 
         "label": "BPM Hostname", 
         "name": "bpm_hostname", 
@@ -405,9 +405,9 @@
         "type": "string"
     },
     {
-        "default": "ctspCHEF",
+        "default": "chef",
         "description": "CHEF Hostname", 
-        "hidden": false, 
+        "hidden": true, 
         "immutable": false, 
         "label": "CHEF Hostname", 
         "name": "chef_hostname", 
@@ -416,9 +416,9 @@
         "type": "string"
     },
     {
-        "default": "ctspEE",
+        "default": "ee",
         "description": "EE Hostname", 
-        "hidden": false, 
+        "hidden": true, 
         "immutable": false, 
         "label": "EE Hostname", 
         "name": "ee_hostname", 
@@ -427,9 +427,9 @@
         "type": "string"
     },
     {
-        "default": "ctspFW",
+        "default": "vyos1",
         "description": "FW Hostname", 
-        "hidden": false, 
+        "hidden": true, 
         "immutable": false, 
         "label": "FW Hostname", 
         "name": "fw_hostname", 

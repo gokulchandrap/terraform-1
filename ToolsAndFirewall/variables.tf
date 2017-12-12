@@ -73,27 +73,27 @@ variable "ldap_ip" {
 
 variable "bpm_hostname" {
    description = "BPM hostname"
-   default     = "ctspBPM"
+   default     = "bpm"
 }
 
 variable "chef_hostname" {
    description = "Chef hostname"
-   default     = "ctspCHEF"
+   default     = "chef"
 }
 
 variable "ee_hostname" {
    description = "EE hostname"
-   default     = "ctspEE"
+   default     = "ee"
 }
 
 variable "fw_hostname" {
    description = "Firewall hostname"
-   default     = "ctspFW"
+   default     = "vyos1"
 }
 
 variable "fw_hostname_2" {
    description = "Firewall hostname"
-   default     = "ctspFW2"
+   default     = "vyos2"
 }
 
 variable "datacenter" {
