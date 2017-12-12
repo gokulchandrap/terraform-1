@@ -1,6 +1,6 @@
 [
     {
-        "default": "AAK",
+        "default": "ctsp-d-aak",
         "description": "Prepend hostnames with this", 
         "hidden": false, 
         "immutable": false, 

@@ -11,7 +11,7 @@ data "softlayer_ssh_key" "public_key" {
 
 #CTSP Sasg
 resource "ibm_compute_vm_instance" "ctsp_sasg1" {
-  hostname             = "${var.prefix}ctspSasgOne"
+  hostname             = "${var.prefix}-sasg1-${var.datacenter}"
   datacenter           = "${var.datacenter}"
   private_subnet       = "${var.private_subnet}"
   tags                 = "${var.tags}"
