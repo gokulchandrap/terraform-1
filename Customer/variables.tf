@@ -8,7 +8,7 @@
 
 variable "prefix" {
    description = "Prepend hostnames with this"
-   default     = "AAK"
+   default     = "ctsp-d-aak"
 }
 
 variable "datacenter" {
