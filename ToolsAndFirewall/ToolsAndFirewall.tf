@@ -15,7 +15,7 @@ data "softlayer_ssh_key" "public_key" {
 }
 
 #EE
-resource "ibm_compute_vm_instance" "MSctspEE" {
+resource "ibm_compute_vm_instance" "vm_ctsp_ee" {
   hostname             = "${var.prefix}${var.ee_hostname}"
   private_network_only = true
   datacenter           = "${var.datacenter}"
@@ -32,7 +32,7 @@ resource "ibm_compute_vm_instance" "MSctspEE" {
 }
 
 #CHEF
-resource "ibm_compute_vm_instance" "MSctspCHEF" {
+resource "ibm_compute_vm_instance" "vm_ctsp_chef" {
   hostname             = "${var.prefix}${var.chef_hostname}"
   private_network_only = true
   datacenter           = "${var.datacenter}"
@@ -49,7 +49,7 @@ resource "ibm_compute_vm_instance" "MSctspCHEF" {
 }
 
 #BPM
-resource "ibm_compute_vm_instance" "MSctspBPM" {
+resource "ibm_compute_vm_instance" "vm_ctsp_bpm" {
   hostname             = "${var.prefix}${var.bpm_hostname}"
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
@@ -65,7 +65,7 @@ resource "ibm_compute_vm_instance" "MSctspBPM" {
 }
 
 #FIREWALL
-resource "ibm_compute_vm_instance" "MSctspFW" {
+resource "ibm_compute_vm_instance" "vm_ctsp_vyos" {
   hostname             = "${var.prefix}${var.fw_hostname}"
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
@@ -85,7 +85,7 @@ resource "null_resource" "bpm_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${ibm_compute_vm_instance.MSctspBPM.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.vm_ctsp_bpm.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -128,7 +128,7 @@ resource "null_resource" "chef_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${ibm_compute_vm_instance.MSctspCHEF.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.vm_ctsp_chef.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -171,7 +171,7 @@ resource "null_resource" "ee_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${ibm_compute_vm_instance.MSctspEE.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.vm_ctsp_ee.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -214,7 +214,7 @@ resource "null_resource" "fw_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 2222
-    host    = "${ibm_compute_vm_instance.MSctspFW.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.vm_ctsp_vyos.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "remote-exec" {
