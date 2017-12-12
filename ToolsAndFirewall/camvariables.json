@@ -149,11 +149,11 @@
         "type": "string"
     },
     {
-        "default": "AAK",
-        "description": "Prepend hostnames with this", 
+        "default": "ctsp-d-aak1",
+        "description": "Hostname prefix <project>[<Enviroment Type>-]>[-<Account c Code>|<Spare Account Name>]", 
         "hidden": false, 
         "immutable": false, 
-        "label": "Prefix", 
+        "label": "Hostname prefix <project>[<Enviroment Type>-]>[-<Account c Code>|<Spare Account Name>]", 
         "name": "prefix", 
         "required": true, 
         "secured": false, 
