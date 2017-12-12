@@ -5,10 +5,9 @@
 #variable "api_key" {
 #   description = "Softlayer API Key"
 #}
-
 variable "prefix" {
-   description = "Hostname prefix"
-   default     = "AAK"
+   description = "Hostname prefix <project>[<Enviroment Type>-]>[-<Account c Code>|<Spare Account Name>]"
+   default     = "ctsp-d-aak1"
 }
 
 variable "sasg_ip_1" {
