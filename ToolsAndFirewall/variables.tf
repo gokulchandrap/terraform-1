@@ -19,8 +19,8 @@ variable "bluepages_bluegroup" {
 }
 
 variable "prefix" {
-   description = "Hostname prefix"
-   default     = "AAK"
+   description = "Hostname prefix <project>[<Enviroment Type>-]>[-<Account c Code>|<Spare Account Name>]"
+   default     = "ctsp-d-c001"
 }
 
 variable "vtun_port" {

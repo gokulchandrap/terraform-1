@@ -15,7 +15,7 @@ data "softlayer_ssh_key" "public_key" {
 }
 
 #EE
-resource "ibm_compute_vm_instance" "MSctspEE" {
+resource "ibm_compute_vm_instance" "vm_ctsp_ee" {
   hostname             = "${var.prefix}${var.ee_hostname}"
   private_network_only = true
   datacenter           = "${var.datacenter}"
@@ -32,7 +32,7 @@ resource "ibm_compute_vm_instance" "MSctspEE" {
 }
 
 #CHEF
-resource "ibm_compute_vm_instance" "MSctspCHEF" {
+resource "ibm_compute_vm_instance" "vm_ctsp_chef" {
   hostname             = "${var.prefix}${var.chef_hostname}"
   private_network_only = true
   datacenter           = "${var.datacenter}"
@@ -49,7 +49,7 @@ resource "ibm_compute_vm_instance" "MSctspCHEF" {
 }
 
 #BPM
-resource "ibm_compute_vm_instance" "MSctspBPM" {
+resource "ibm_compute_vm_instance" "vm_ctsp_bpm" {
   hostname             = "${var.prefix}${var.bpm_hostname}"
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
@@ -65,7 +65,7 @@ resource "ibm_compute_vm_instance" "MSctspBPM" {
 }
 
 #FIREWALL
-resource "ibm_compute_vm_instance" "MSctspFW" {
+resource "ibm_compute_vm_instance" "vm_ctsp_vyos" {
   hostname             = "${var.prefix}${var.fw_hostname}"
   datacenter           = "${var.datacenter}"
   tags                 = "${var.tags}"
@@ -85,7 +85,7 @@ resource "null_resource" "bpm_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${ibm_compute_vm_instance.MSctspBPM.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.vm_ctsp_bpm.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -128,7 +128,7 @@ resource "null_resource" "chef_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${ibm_compute_vm_instance.MSctspCHEF.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.vm_ctsp_chef.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -171,7 +171,7 @@ resource "null_resource" "ee_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 22
-    host    = "${ibm_compute_vm_instance.MSctspEE.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.vm_ctsp_ee.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "file" {
@@ -214,7 +214,7 @@ resource "null_resource" "fw_remote_exec" {
     type    = "ssh"
     user    = "root"
     port    = 2222
-    host    = "${ibm_compute_vm_instance.MSctspFW.ipv4_address_private}"
+    host    = "${ibm_compute_vm_instance.vm_ctsp_vyos.ipv4_address_private}"
     private_key = "${file("${var.private_key_path}")}"
   }
   provisioner "remote-exec" {
@@ -228,7 +228,7 @@ resource "null_resource" "fw_remote_exec" {
 resource "null_resource" "configureSasgService" {
   provisioner "local-exec" {
     command = <<EOT
-  cat vars_empty.template | sed "s/^BPM_IP=.*/BPM_IP=${ibm_compute_vm_instance.MSctspBPM.ipv4_address_private}/" | sed "s/^EE_IP=.*/EE_IP=${ibm_compute_vm_instance.MSctspEE.ipv4_address_private}/" | sed "s/^CHEF_IP=.*/CHEF_IP=${ibm_compute_vm_instance.MSctspCHEF.ipv4_address_private}/" | sed "s/^TOOLS_SUBNET=.*/TOOLS_SUBNET=${var.tools_subnet}/" | sed "s/^BCR_IP=.*/BCR_IP=${var.bcr_ip}/" | sed "s/^SASGAAS_MS_IP=.*/SASGAAS_MS_IP=${var.sasgaas_ms_ip}/" | sed "s|^CUSTOMER_SUBNETS\[0\]=.*|CUSTOMER_SUBNETS\[0\]=${var.customer_subnet}|" | sed "s/^SASG_MASQ_IP\[0\]=.*/SASG_MASQ_IP[0]=${var.sasg_masq_ip}/" | sed "s/^VTUN_PORT\[0\]=.*/VTUN_PORT[0]=${var.vtun_port}/" | sed "s/^SASG_IP_1\[0\]=.*/SASG_IP_1[0]=${var.sasg_ip_1}/" | sed "s/^SASG_VIP1\[0\]=.*/SASG_VIP1[0]=${var.sasg_vip_1}/" | sed "s/^DNS_IP\[0\]=.*/DNS_IP[0]=${var.dns_ip}/" | sed "s/^LDAP_IP\[0\]=.*/LDAP_IP[0]=${var.ldap_ip}/" | sed "s/^PUBLIC_VYOS_IP=.*/PUBLIC_VYOS_IP=${ibm_compute_vm_instance.MSctspFW.ipv4_address}/" | sed "s/^PRIVATE_VYOS_IP=.*/PRIVATE_VYOS_IP=${ibm_compute_vm_instance.MSctspFW.ipv4_address_private}/" > /tmp/vars
+  cat vars_empty.template | sed "s/^BPM_IP=.*/BPM_IP=${ibm_compute_vm_instance.vm_ctsp_bpm.ipv4_address_private}/" | sed "s/^EE_IP=.*/EE_IP=${ibm_compute_vm_instance.MSctspEE.ipv4_address_private}/" | sed "s/^CHEF_IP=.*/CHEF_IP=${ibm_compute_vm_instance.MSctspCHEF.ipv4_address_private}/" | sed "s/^TOOLS_SUBNET=.*/TOOLS_SUBNET=${var.tools_subnet}/" | sed "s/^BCR_IP=.*/BCR_IP=${var.bcr_ip}/" | sed "s/^SASGAAS_MS_IP=.*/SASGAAS_MS_IP=${var.sasgaas_ms_ip}/" | sed "s|^CUSTOMER_SUBNETS\[0\]=.*|CUSTOMER_SUBNETS\[0\]=${var.customer_subnet}|" | sed "s/^SASG_MASQ_IP\[0\]=.*/SASG_MASQ_IP[0]=${var.sasg_masq_ip}/" | sed "s/^VTUN_PORT\[0\]=.*/VTUN_PORT[0]=${var.vtun_port}/" | sed "s/^SASG_IP_1\[0\]=.*/SASG_IP_1[0]=${var.sasg_ip_1}/" | sed "s/^SASG_VIP1\[0\]=.*/SASG_VIP1[0]=${var.sasg_vip_1}/" | sed "s/^DNS_IP\[0\]=.*/DNS_IP[0]=${var.dns_ip}/" | sed "s/^LDAP_IP\[0\]=.*/LDAP_IP[0]=${var.ldap_ip}/" | sed "s/^PUBLIC_VYOS_IP=.*/PUBLIC_VYOS_IP=${ibm_compute_vm_instance.MSctspFW.ipv4_address}/" | sed "s/^PRIVATE_VYOS_IP=.*/PRIVATE_VYOS_IP=${ibm_compute_vm_instance.MSctspFW.ipv4_address_private}/" > /tmp/vars
 EOT
   }
   provisioner "local-exec" {
@@ -238,7 +238,7 @@ username="${var.bluepages_username}"
 API_KEY="${var.bluepages_apikey}"
 bluegroup="${var.bluepages_bluegroup}"
 echo "Creating Customer $customername"
-curl -k -v --request POST --url "https://${var.sasgaas_ms_ip}/customer" --header 'cache-control: no-cache' --header 'content-type: application/json' --header 'x-api-bg: '$bluegroup --header 'x-api-id: '$username --header 'x-api-key: '$API_KEY --data '{ "BLUEGROUPS": ["'$bluegroup'"], "USER_ID": "'$username'", "CUSTOMER_NAME": "'$customername'", "VYOS_AUTO_USERNAME": "sasauto", "VYOS_AUTO_PASSKEY": "sasautokey", "TOOLS_AUTO_USERNAME": "sasauto", "TOOLS_AUTO_PASSKEY": "sasautokey", "VARS": { "MS_VYATTA_IP": "", "MINI_MS_VYATTA_IP": "", "SASGAAS_CDS_IP": "", "BPM_IP": "'${ibm_compute_vm_instance.MSctspBPM.ipv4_address_private}'", "CHEF_IP": "'${ibm_compute_vm_instance.MSctspCHEF.ipv4_address_private}'", "EE_IP": "'${ibm_compute_vm_instance.MSctspEE.ipv4_address_private}'", "TOOLS_SUBNET": "'${var.tools_subnet}'", "BCR_IP": "'${var.bcr_ip}'", "SASGAAS_MS_IP": "'${var.sasgaas_ms_ip}'", "CUSTOMER_SUBNETS": ["'${var.customer_subnet}'"], "SASG_MASQ_IP": ["'${var.sasg_masq_ip}'"], "VTUN_PORT": ["'${var.vtun_port}'"], "DNS_IP" : ["'${var.dns_ip}'"], "LDAP_IP" : ["'${var.ldap_ip}'"], "PUBLIC_VYOS_IP": "'${ibm_compute_vm_instance.MSctspFW.ipv4_address}'", "PRIVATE_VYOS_IP": "'${ibm_compute_vm_instance.MSctspFW.ipv4_address_private}'", "SASG_IP_1": ["'${var.sasg_ip_1}'"], "SASG_VIP1": ["'${var.sasg_vip_1}'"], "SASG_NWIF": "eth0", "SASG_VPNIF": "vtun0", "TIMESTAMP": "$(date +\"%Y-%m-%d:%H:%M:%S\")", "HOSTNAME": "`hostname`", "VERSION": "`cat ./VERSION`", "VTUN_CA_CERT_FILE": "/config/auth/ca.crt", "VTUN_CERT_FILE": "/config/auth/\"$HOSTNAME\".crt", "VTUN_DH_FILE": "/config/auth/dh2048.pem", "VTUN_KEY_FILE": "/config/auth/$HOSTNAME.key", "APM_IP": "159.8.20.241", "MRTG_USER": "mrtg", "MRTG_DIR": "/home/mrtg" } }' 
+curl -k -v --request POST --url "https://${var.sasgaas_ms_ip}/customer" --header 'cache-control: no-cache' --header 'content-type: application/json' --header 'x-api-bg: '$bluegroup --header 'x-api-id: '$username --header 'x-api-key: '$API_KEY --data '{ "BLUEGROUPS": ["'$bluegroup'"], "USER_ID": "'$username'", "CUSTOMER_NAME": "'$customername'", "VYOS_AUTO_USERNAME": "sasauto", "VYOS_AUTO_PASSKEY": "sasautokey", "TOOLS_AUTO_USERNAME": "sasauto", "TOOLS_AUTO_PASSKEY": "sasautokey", "VARS": { "MS_VYATTA_IP": "", "MINI_MS_VYATTA_IP": "", "SASGAAS_CDS_IP": "", "BPM_IP": "'${ibm_compute_vm_instance.vm_ctsp_bpm.ipv4_address_private}'", "CHEF_IP": "'${ibm_compute_vm_instance.MSctspCHEF.ipv4_address_private}'", "EE_IP": "'${ibm_compute_vm_instance.MSctspEE.ipv4_address_private}'", "TOOLS_SUBNET": "'${var.tools_subnet}'", "BCR_IP": "'${var.bcr_ip}'", "SASGAAS_MS_IP": "'${var.sasgaas_ms_ip}'", "CUSTOMER_SUBNETS": ["'${var.customer_subnet}'"], "SASG_MASQ_IP": ["'${var.sasg_masq_ip}'"], "VTUN_PORT": ["'${var.vtun_port}'"], "DNS_IP" : ["'${var.dns_ip}'"], "LDAP_IP" : ["'${var.ldap_ip}'"], "PUBLIC_VYOS_IP": "'${ibm_compute_vm_instance.MSctspFW.ipv4_address}'", "PRIVATE_VYOS_IP": "'${ibm_compute_vm_instance.MSctspFW.ipv4_address_private}'", "SASG_IP_1": ["'${var.sasg_ip_1}'"], "SASG_VIP1": ["'${var.sasg_vip_1}'"], "SASG_NWIF": "eth0", "SASG_VPNIF": "vtun0", "TIMESTAMP": "$(date +\"%Y-%m-%d:%H:%M:%S\")", "HOSTNAME": "`hostname`", "VERSION": "`cat ./VERSION`", "VTUN_CA_CERT_FILE": "/config/auth/ca.crt", "VTUN_CERT_FILE": "/config/auth/\"$HOSTNAME\".crt", "VTUN_DH_FILE": "/config/auth/dh2048.pem", "VTUN_KEY_FILE": "/config/auth/$HOSTNAME.key", "APM_IP": "159.8.20.241", "MRTG_USER": "mrtg", "MRTG_DIR": "/home/mrtg" } }' 
 echo "Workaround to upload vars"
 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/amazontestkey.pem /tmp/vars root@${var.sasgaas_ms_ip}:/var/lib/docker/data/sasg_data/userdata/customers/$customername/vars
 echo "Invoking Regenerate"

@@ -1,6 +1,7 @@
 provider ibm {
 }
 
+# slcli subnet create private 8 2105029
 resource "ibm_subnet" "test" {
   type = "Static"
   private = true
