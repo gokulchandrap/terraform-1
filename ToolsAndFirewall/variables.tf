@@ -30,12 +30,12 @@ variable "vtun_port" {
 
 variable "customer_subnet" {
    description = "Customer Subnet"
-   default     = "10.190.87.128/26"
+   default     = "10.186.149.128/25"
 }
 
 variable "tools_subnet" {
    description = "Tools Subnet"
-   default     = "255.255.255.192"
+   default     = "10.190.87.128/26"
 }
 
 variable "bcr_ip" {

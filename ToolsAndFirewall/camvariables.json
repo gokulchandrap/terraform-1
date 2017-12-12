@@ -41,7 +41,7 @@
         "type": "string"
     },
     {
-        "default": "10.190.87.128/26",
+        "default": "10.186.149.128/25",
         "description": "Customer Subnet", 
         "hidden": false, 
         "immutable": false, 
@@ -52,7 +52,7 @@
         "type": "string"
     },
     {
-        "default": "255.255.255.192",
+        "default": "10.190.87.128/26",
         "description": "Tools Subnet", 
         "hidden": false, 
         "immutable": false, 
