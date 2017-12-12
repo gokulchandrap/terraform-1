@@ -10,15 +10,15 @@ output "svg_chef_ipv4_address_private"  {
   value = "${ibm_compute_vm_instance.vm_ctsp_chef.ipv4_address_private}"
 }
 
-output "svg_fw_ipv6"  {
+output "svg_vyos_ipv6"  {
   value = "${ibm_compute_vm_instance.vm_ctsp_vyos.ipv6_address}"
 }
 
-output "svg_fw_ipv4"  {
+output "svg_vyos_ipv4"  {
   value = "${ibm_compute_vm_instance.vm_ctsp_vyos.ipv4_address}"
 }
 
-output "svg_fw_ipv4_address_private"  {
+output "svg_vyos_ipv4_address_private"  {
   value = "${ibm_compute_vm_instance.vm_ctsp_vyos.ipv4_address_private}"
 }
 
