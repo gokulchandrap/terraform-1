@@ -352,7 +352,7 @@
     {
         "default": ["100","100"],
         "description": "Disks - 2 required for the images", 
-        "hidden": false, 
+        "hidden": true, 
         "immutable": false, 
         "label": "Disks", 
         "name": "disks", 
